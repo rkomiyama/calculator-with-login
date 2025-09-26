@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "16226125981",
+    "project_id": "dart-calculator-with-login",
+    "storage_bucket": "dart-calculator-with-login.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:16226125981:android:efb657ecb4fdd04ecbac74",
+        "android_client_info": {
+          "package_name": "com.example.calculator"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCO1x46P_5g7Hv_7YkP_PBhuxEcFACLzcQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
