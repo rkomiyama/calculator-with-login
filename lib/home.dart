@@ -1,10 +1,15 @@
 // import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key, required this.title, required this.auth, required this.db});
   final String title;
+  final FirebaseAuth auth;
+  final FirebaseFirestore db;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -41,6 +46,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _equalPressed() {
+    int firstNum = _savedNum;
+    int secondNum = _resultNum;
+
     setState(() {
       if (_opKey != null) {
         switch(_opKey) {
@@ -58,6 +66,16 @@ class _MyHomePageState extends State<MyHomePage> {
             break;
         }
       }
+      String expression = "$firstNum $_opKey $secondNum = $_resultNum";
+      String now = Jiffy.now().dateTime.toString();
+      widget.db
+        .collection("users")
+        .doc(widget.auth.currentUser?.uid)
+        .collection("calculations")
+        .add({
+          "timestamp": now,
+          "expression": expression
+        });
     });
   }
 

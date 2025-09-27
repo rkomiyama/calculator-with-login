@@ -1,21 +1,20 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'auth_gate.dart';
 import 'home.dart';
 
-const clientId = 'YOUR_CLIENT_ID';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp(clientId: clientId));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required clientId});
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -25,10 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      routes: {
-        '/home': (context) => const MyHomePage(title: 'Calculator with Login'),
-      },
-      home: const AuthGate(clientId: clientId),
+      home: const AuthGate(),
     );
   }
 }
